@@ -41,6 +41,24 @@ SLList::SLList(const SLList& other){
 
 SLList& SLList::operator=(const SLList& other){
 
+    if(this == &other)
+        return *this;
+
+    SLList temp(other); 
+    
+    SLLNode* swap_head = head;
+    head = temp.head;
+    temp.head = swap_head;
+
+    SLLNode* swap_tail = tail;
+    tail = temp.tail;
+    temp.tail = swap_tail;
+
+    unsigned swap_size = list_size;
+    list_size = temp.list_size;
+    temp.list_size = swap_size;
+
+    return *this;
 
 }
 

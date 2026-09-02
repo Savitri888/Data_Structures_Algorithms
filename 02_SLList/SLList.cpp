@@ -1,8 +1,10 @@
 #include "SLList.hpp"
 #include <iostream>
+#include <stdexcept>
 
 
-SLList::SLList() : head(nullptr), tail(nullptr), list_size(0){   
+SLList::SLList() 
+: head(nullptr), tail(nullptr), list_size(0){   
 }
 
 // ------------------------------------------------------------------------------------------------
@@ -13,53 +15,33 @@ SLList::~SLList(){
 
 // ------------------------------------------------------------------------------------------------
 
-SLList::SLList(const SLList& other){
-
-    head = nullptr;
-    tail = nullptr;
-    list_size = other.list_size;
-
-    if(other.head == nullptr)
-        return;
-
-    head = new SLLNode(other.head->data);
-    SLLNode* cur_new = head;
-    SLLNode* cur_other = other.head->next;
-
-    while(cur_other != nullptr){
-
-        cur_new->next = new SLLNode(cur_other->data);
-        cur_new = cur_new->next;
-        cur_other = cur_other->next;
-    }
-
-    tail = cur_new;
+SLList::SLList(const SLList& other) 
+: head(nullptr), tail(nullptr), list_size(0) {
+   
+    SLLNode* cur = other.head;
     
+    while (cur != nullptr) {
+        push_back(cur->data); 
+        cur = cur->next;  
+    }
 }
 
 // ------------------------------------------------------------------------------------------------
 
 SLList& SLList::operator=(const SLList& other){
 
-    if(this == &other)
-        return *this;
+    if (this != &other){
+        clear();
 
-    SLList temp(other); 
+        SLLNode* cur = other.head;
+        while (cur != nullptr) {
+            push_back(cur->data); 
+            cur = cur->next;
+        }
+
+    }
     
-    SLLNode* swap_head = head;
-    head = temp.head;
-    temp.head = swap_head;
-
-    SLLNode* swap_tail = tail;
-    tail = temp.tail;
-    temp.tail = swap_tail;
-
-    unsigned swap_size = list_size;
-    list_size = temp.list_size;
-    temp.list_size = swap_size;
-
     return *this;
-
 }
 
 // ------------------------------------------------------------------------------------------------
@@ -183,34 +165,43 @@ void SLList::pop_back(void){
     if(empty())
         return;
 
-
-     if (head == tail) {
-        delete head;
-        head = nullptr;
-        tail = nullptr;
-        list_size = 0;
+    if (head == tail) { 
+        pop_front();
         return;
     }
 
     if(!empty()){
-        SLLNode* temp = head;
+        SLLNode* cur = head;
 
-        while(temp->next != tail){
-            temp = temp->next;
+        while (cur->next != tail) { 
+            cur = cur->next;
         }
         
-        delete tail;
-
-        tail = temp;
+        delete tail;      
+        tail = cur;    
         tail->next = nullptr;
-
-        list_size--;
-
-        if(empty()){        
-            head = tail;   
-        }
     }
+    list_size--;
+
+    return;
 
 }
 
+
 // ------------------------------------------------------------------------------------------------
+
+ int& SLList::at(unsigned index){
+
+    if(index >= size()){
+        throw std::logic_error("at: incorrect index");
+    }
+
+    SLLNode* cur = head;
+
+    for(unsigned i = 0; i < index; i++){
+        cur = cur->next;
+    }
+
+    return cur->data;
+
+ }

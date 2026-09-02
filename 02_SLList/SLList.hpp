@@ -37,6 +37,8 @@ public:
 
     void clear(void);           // Remove all the nodes
 
+    int& at(unsigned index);    // Return the value of the node at index
+
 // ------------------------------------------------------------------------------------------------
 
 private:

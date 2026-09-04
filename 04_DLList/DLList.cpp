@@ -26,3 +26,24 @@ void DLList<T>::push_front(const T& val) {
 }
 
 // --------------------------------------------------------------------------------------------------------------------------------
+
+template <typename T>
+void DLList<T>::print() const{
+
+    std::cout << "{ ";
+
+    DLLNode<T>* cur = head;
+
+    while (cur){
+        std::cout << cur->data;
+
+        if(cur->next){
+            std::cout << " -> ";
+        }
+
+        cur = cur->next;
+    }
+
+    std::cout << " }\n";
+
+}

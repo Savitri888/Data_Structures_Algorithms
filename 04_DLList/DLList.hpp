@@ -31,7 +31,7 @@ public:
 
     void print() const;              // Print the list  // To-do
 
-    // void push_back(int val);    // Insert at the end
+    void push_back(const T& val);    // Insert at the end
 
     // void pop_front(void);       // Remove the first node from the list
 
@@ -51,6 +51,8 @@ private:
 
     
 };
+
+#include "DLList.tpp"
 
 
 #endif

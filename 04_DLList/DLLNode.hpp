@@ -6,13 +6,11 @@ class DLLNode {
 
 public:
 
-    DLLNode(const T& d = T(), DLLNode<T>* p = nullptr. DLLNode<T>* n = nullptr) 
+    DLLNode(const T& d = T(), DLLNode<T>* p = nullptr, DLLNode<T>* n = nullptr) 
     : data(d), prev(p), next(n){
 
     }
 
-
-private:
 
     T data;
     DLLNode<T>* prev;

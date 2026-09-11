@@ -12,20 +12,20 @@ public:
     // No-arg Constructor
     DLList();
 
-    // // Destructor
-    // ~DLList();
+    // Destructor
+    ~DLList();
 
-    // // Copy Constructor
-    // DLList(const DLList& other); 
+    // Copy Constructor
+    DLList(const DLList& other); 
 
-    // // Assignment Operator (=)
-    // DLList& operator=(const DLList& other); 
+    // Assignment Operator (=)
+    DLList<T>& operator=(const DLList& other); 
 
 // ------------------------------------------------------------------------------------------------
 
-    // unsigned size() const;      // Return the size of the list
+    unsigned size() const;      // Return the size of the list
 
-    // bool empty() const;         // Return true if list is empty
+    bool empty() const;         // Return true if list is empty
 
     void push_front(const T& val);   // Insert the node at the beginning
 
@@ -33,13 +33,13 @@ public:
 
     void push_back(const T& val);    // Insert at the end
 
-    // void pop_front(void);       // Remove the first node from the list
+    void pop_front(void);       // Remove the first node from the list
 
-    // void pop_back(void);        // Remove the last node from the list  
+    void pop_back(void);        // Remove the last node from the list  
 
-    // void clear(void);           // Remove all the nodes
+    void clear(void);           // Remove all the nodes
 
-    // int& at(unsigned index);    // Return the value of the node at index
+    T& at(unsigned index);    // Return the value of the node at index
 
 // ------------------------------------------------------------------------------------------------
 

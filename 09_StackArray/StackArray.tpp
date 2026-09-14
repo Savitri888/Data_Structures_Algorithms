@@ -1,9 +1,10 @@
 #include "StackArray.hpp"
 #include <stdexcept>
+#include <iostream>
 
 // -----------------------------------------------------------------------------------
 template <typename T, int capacity>
-StackArray<T, capacity>::Stack() : top_idx(-1){
+StackArray<T, capacity>::StackArray() : top_idx(-1){
 
 }
 
@@ -26,7 +27,7 @@ template <typename T, int capacity>
 T StackArray<T, capacity>::pop(){
 
     if(empty()){
-        throw std::out_of_range("pop: Full Stack");
+        throw std::out_of_range("pop: Empty Stack");
     }
 
     else{
@@ -55,7 +56,7 @@ template <typename T, int capacity>
 const T& StackArray<T, capacity>::top() const{
 
     if(empty()){
-        throw std::out_of_range("top: Full Stack");
+        throw std::out_of_range("top: Empty Stack");
     }
 
     else{

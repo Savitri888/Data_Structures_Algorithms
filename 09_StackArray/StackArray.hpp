@@ -7,7 +7,7 @@ class StackArray{
 
 public:
 
-    Stack();
+    StackArray();
 
     void push(const T& val);
     T pop();
@@ -22,7 +22,9 @@ public:
 private:
 
     T data[capacity]; // Array of elements
+    int top_idx;
 };
 
+#include "StackArray.tpp"
 
 #endif

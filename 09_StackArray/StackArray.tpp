@@ -1,0 +1,88 @@
+#include "StackArray.hpp"
+#include <stdexcept>
+
+// -----------------------------------------------------------------------------------
+template <typename T, int capacity>
+StackArray<T, capacity>::Stack() : top_idx(-1){
+
+}
+
+// -----------------------------------------------------------------------------------
+template <typename T, int capacity>
+void StackArray<T, capacity>::push(const T& val){
+
+    if(full()){
+        throw std::out_of_range("push: Full Stack");
+    }
+
+    else{
+
+        data[++top_idx] = val;
+    }
+}
+
+// -----------------------------------------------------------------------------------
+template <typename T, int capacity>
+T StackArray<T, capacity>::pop(){
+
+    if(empty()){
+        throw std::out_of_range("pop: Full Stack");
+    }
+
+    else{
+
+        return data[top_idx--];
+    }
+}
+
+// -----------------------------------------------------------------------------------
+template <typename T, int capacity>
+bool StackArray<T, capacity>::full() const{
+
+    return top_idx == capacity - 1;
+}
+
+
+// -----------------------------------------------------------------------------------
+template <typename T, int capacity>
+bool StackArray<T, capacity>::empty() const{
+
+    return top_idx == -1;
+}
+
+// -----------------------------------------------------------------------------------
+template <typename T, int capacity>
+const T& StackArray<T, capacity>::top() const{
+
+    if(empty()){
+        throw std::out_of_range("top: Full Stack");
+    }
+
+    else{
+
+        return data[top_idx];
+    }
+}
+
+// -----------------------------------------------------------------------------------
+template <typename T, int capacity>
+void StackArray<T, capacity>::print() const{
+
+    std::cout << "{ ";
+
+    int i = top_idx;
+
+    while(i >= 0 ){
+
+        std::cout << data[i];
+
+        if(i > 0){
+            std::cout << " ";
+        }
+        
+        i--;
+    }
+
+    std::cout << "}" << std::endl;
+
+}

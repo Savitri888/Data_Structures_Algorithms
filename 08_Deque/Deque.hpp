@@ -22,7 +22,7 @@ public:
     const T&    front(); // Return the first element in the queue
     const T&    back(); // Return the last element in the queue
     void        clear(); // Remove all the elements from the queue
-    int         size();  // Return the size of the queue
+    int         fsize();  // Return the size of the queue
 
     
 private:

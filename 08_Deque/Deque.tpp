@@ -30,10 +30,11 @@ void        Deque<T, size>::print() const {
 
     std::cout << "[ ";
     int i = front_idx;
-    while (i != back_idx) {
+    do {
         std::cout << data[i] << " ";
         i = (i + 1) % size;     // Go to the next element
-    }
+        
+    } while (i != back_idx);
     std::cout << "]\n";
 }
 
@@ -41,9 +42,9 @@ void        Deque<T, size>::print() const {
 template <typename T, int size>
 void       Deque<T, size>::push_back(const T& val) {
 
-    if(full){
+    if(full()){
 
-        throw std:out_of_range("push_back: Full deque");
+        throw std::out_of_range("push_back: Full deque");
     }
 
     data[back_idx] = val;
@@ -56,9 +57,9 @@ void       Deque<T, size>::push_back(const T& val) {
 template <typename T, int size>
 void       Deque<T, size>::push_front(const T& val) {
 
-    if(full){
+    if(full()){
 
-        throw std:out_of_range("push_front: Full deque");
+        throw std::out_of_range("push_front: Full deque");
     }
     
     front_idx = (front_idx - 1 + size) % size;
@@ -103,8 +104,8 @@ const T& Deque<T, size>::front(){
 // --------------------------------------------------------------------------------------------------------------
 template <typename T, int size>
 const T& Deque<T, size>::back(){
-    
-    return data[back_idx];
+
+    return data[(back_idx - 1 + size) % size];
 }
 
 // --------------------------------------------------------------------------------------------------------------
@@ -118,7 +119,7 @@ void Deque<T, size>::clear(){
 
 // --------------------------------------------------------------------------------------------------------------
 template <typename T, int size>
-int Deque<T, size>::size(){
+int Deque<T, size>::fsize(){
 
     return queue_size;
 }

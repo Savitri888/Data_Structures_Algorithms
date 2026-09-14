@@ -39,7 +39,7 @@ public:
 
     void clear(void);           // Remove all the nodes
 
-    T& at(unsigned index) const;    // Return the value of the node at index
+    T& at(unsigned index);    // Return the value of the node at index
 
 // ------------------------------------------------------------------------------------------------
 
